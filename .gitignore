@@ -1,0 +1,21 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Flask instance folder (contains SQLite database)
+instance/
+
+# macOS
+.DS_Store
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+
+# Pytest
+.pytest_cache/

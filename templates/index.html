@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Property Operations Hub</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='styles.css') }}"
+    >
+</head>
+
+<body>
+    <header class="app-header">
+        <div>
+            <p class="eyebrow">Healthcare Real Estate Operations</p>
+            <h1>Property Operations Hub</h1>
+            <p class="subtitle">
+                Track operational issues across healthcare properties,
+                prioritize work, and monitor resolution progress.
+            </p>
+        </div>
+
+        <button id="open-form-button" class="primary-button">
+            Report Issue
+        </button>
+    </header>
+
+    <main class="page-container">
+        <section class="dashboard-grid">
+            <article class="dashboard-card">
+                <p>Total Issues</p>
+                <h2 id="total-issues">0</h2>
+            </article>
+
+            <article class="dashboard-card">
+                <p>Open</p>
+                <h2 id="open-issues">0</h2>
+            </article>
+
+            <article class="dashboard-card">
+                <p>In Progress</p>
+                <h2 id="in-progress-issues">0</h2>
+            </article>
+
+            <article class="dashboard-card">
+                <p>Critical</p>
+                <h2 id="critical-issues">0</h2>
+            </article>
+
+            <article class="dashboard-card">
+                <p>Resolved</p>
+                <h2 id="resolved-issues">0</h2>
+            </article>
+        </section>
+
+        <section
+            id="issue-form-section"
+            class="form-panel hidden"
+        >
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">New Operational Request</p>
+                    <h2>Report an Issue</h2>
+                </div>
+
+                <button
+                    id="close-form-button"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Close
+                </button>
+            </div>
+
+            <form id="issue-form">
+                <div class="form-grid">
+                    <label>
+                        Issue title
+                        <input
+                            id="title"
+                            name="title"
+                            type="text"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Property name
+                        <input
+                            id="property_name"
+                            name="property_name"
+                            type="text"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Category
+                        <input
+                            id="category"
+                            name="category"
+                            type="text"
+                            placeholder="Maintenance, Compliance, Tenant Services"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Reported by
+                        <input
+                            id="reported_by"
+                            name="reported_by"
+                            type="text"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Priority
+                        <select
+                            id="priority"
+                            name="priority"
+                            required
+                        >
+                            <option value="LOW">Low</option>
+                            <option value="MEDIUM" selected>Medium</option>
+                            <option value="HIGH">High</option>
+                            <option value="CRITICAL">Critical</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Status
+                        <select
+                            id="status"
+                            name="status"
+                            required
+                        >
+                            <option value="OPEN" selected>Open</option>
+                            <option value="IN_PROGRESS">In Progress</option>
+                            <option value="RESOLVED">Resolved</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label>
+                    Description
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        required
+                    ></textarea>
+                </label>
+
+                <div class="form-actions">
+                    <p id="form-message"></p>
+
+                    <button class="primary-button" type="submit">
+                        Save Issue
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="issues-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Current Work</p>
+                    <h2>Operational Issues</h2>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Search issues or properties"
+                >
+
+                <select id="status-filter">
+                    <option value="">All statuses</option>
+                    <option value="OPEN">Open</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="RESOLVED">Resolved</option>
+                </select>
+
+                <select id="priority-filter">
+                    <option value="">All priorities</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                    <option value="CRITICAL">Critical</option>
+                </select>
+
+                <button
+                    id="clear-filters-button"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Clear Filters
+                </button>
+            </div>
+
+            <div id="issues-container" class="issues-grid">
+                <p>Loading issues...</p>
+            </div>
+        </section>
+    </main>
+
+    <script
+        src="{{ url_for('static', filename='app.js') }}"
+    ></script>
+</body>
+</html>
